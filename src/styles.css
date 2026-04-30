@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -13,7 +17,57 @@
   }
 
   ::selection {
-    background: #56c7a3;
-    color: #172026;
+    background: #78cfa6;
+    color: #102019;
+  }
+}
+
+@layer components {
+  .theme-light {
+    --color-page: #f4fbf3;
+    --color-header: rgba(244, 251, 243, 0.9);
+    --color-surface: #ffffff;
+    --color-card: #fbfffb;
+    --color-band: #e7f6ea;
+    --color-text: #102019;
+    --color-muted: rgba(16, 32, 25, 0.68);
+    --color-border: rgba(16, 92, 58, 0.14);
+    --color-border-strong: rgba(16, 92, 58, 0.22);
+    --color-accent: #16824f;
+    --color-accent-2: #49b77d;
+    --color-accent-soft: rgba(73, 183, 125, 0.16);
+    --color-hero-panel: #d9f0dc;
+    --color-floating: rgba(255, 255, 255, 0.78);
+    --color-glow: rgba(73, 183, 125, 0.34);
+    --color-shadow: rgba(17, 67, 43, 0.2);
+    --color-chip: rgba(22, 130, 79, 0.08);
+    --color-project-a: #d7f7d8;
+    --color-project-b: #7fcf9c;
+    --color-project-c: #1f8e5d;
+    --color-footer: #102019;
+  }
+
+  .theme-dark {
+    --color-page: #061a26;
+    --color-header: rgba(6, 26, 38, 0.9);
+    --color-surface: #082333;
+    --color-card: #0a2a3a;
+    --color-band: #082d3f;
+    --color-text: #f4fbff;
+    --color-muted: rgba(244, 251, 255, 0.7);
+    --color-border: rgba(120, 218, 255, 0.14);
+    --color-border-strong: rgba(120, 218, 255, 0.24);
+    --color-accent: #58c8ff;
+    --color-accent-2: #72e0c4;
+    --color-accent-soft: rgba(88, 200, 255, 0.15);
+    --color-hero-panel: #0a3348;
+    --color-floating: rgba(8, 35, 51, 0.78);
+    --color-glow: rgba(88, 200, 255, 0.34);
+    --color-shadow: rgba(0, 0, 0, 0.32);
+    --color-chip: rgba(88, 200, 255, 0.1);
+    --color-project-a: #0e405a;
+    --color-project-b: #137aa4;
+    --color-project-c: #72e0c4;
+    --color-footer: #03111a;
   }
 }

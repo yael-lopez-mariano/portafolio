@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 
 export const profile = {
-  name: 'Tu Nombre',
+  name: 'Yael Lopez Mariano',
   role: 'Desarrollador Frontend',
   location: 'Mexico',
   email: 'tuemail@correo.com',

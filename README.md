@@ -1,21 +1,5 @@
-# Portafolio
+# Portafolio Profesional
 
-Portafolio frontend creado con React, TypeScript, Vite y Tailwind CSS.
+Este repositorio contiene un portafolio web personal enfocado en mostrar el perfil profesional, habilidades, proyectos destacados y medios de contacto.
 
-## Comandos
-
-```bash
-npm install
-npm run dev
-npm run build
-```
-
-## Publicar en Netlify
-
-1. Sube este proyecto a GitHub.
-2. En Netlify, crea un nuevo sitio desde Git.
-3. Usa estos valores:
-   - Build command: `npm run build`
-   - Publish directory: `dist`
-
-La configuración también está en `netlify.toml`.
+El objetivo del sitio es presentar de forma clara la experiencia, el estilo de trabajo y los proyectos realizados como desarrollador frontend.
