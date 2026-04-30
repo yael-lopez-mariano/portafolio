@@ -10,7 +10,7 @@ import {
   X,
 } from 'lucide-react';
 import { useState } from 'react';
-import heroDeveloper from './assets/hero-developer.png';
+import profileImage from './assets/perfil.png';
 import { profile, projects, skills, stats } from './data/portfolio';
 
 const navItems = [
@@ -154,7 +154,7 @@ function App() {
               </p>
             </div>
             <img
-              src={heroDeveloper}
+              src={profileImage}
               alt="Retrato profesional de Yael Lopez Mariano"
               className="absolute bottom-0 left-1/2 z-10 max-h-[560px] w-auto max-w-[96%] -translate-x-1/2 object-contain drop-shadow-[0_32px_45px_rgba(12,50,42,0.28)]"
             />
