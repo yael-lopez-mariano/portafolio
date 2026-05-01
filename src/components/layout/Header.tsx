@@ -1,5 +1,5 @@
 import { Menu, Moon, Sun, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, type PointerEvent } from 'react';
 import type { PortfolioContent } from '../../data/portfolio';
 import { getLanguageToggleDesign } from '../../styles/languageToggleDesign';
 import { getThemeToggleDesign } from '../../styles/themeToggleDesign';
@@ -21,9 +21,28 @@ export function Header({
   onToggleTheme,
 }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [ripple, setRipple] = useState<{ href: string; x: number; y: number; id: number } | null>(
+    null,
+  );
   const { navItems } = content;
   const languageToggle = getLanguageToggleDesign(language);
   const themeToggle = getThemeToggleDesign(isDark);
+
+  const showRipple = (event: PointerEvent<HTMLAnchorElement>, href: string) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const id = Date.now();
+
+    setRipple({
+      href,
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+      id,
+    });
+
+    window.setTimeout(() => {
+      setRipple((current) => (current?.id === id ? null : current));
+    }, 620);
+  };
 
   return (
     <header className="fixed left-0 top-0 z-50 w-full bg-[var(--color-header)] backdrop-blur">
@@ -31,20 +50,28 @@ export function Header({
         <div className="absolute left-3 z-20 flex min-w-0 items-center gap-2 sm:left-4">
           <a
             href="#inicio"
-            className="flex min-w-0 items-center truncate text-2xl font-black tracking-wide"
+            className="flex min-w-0 items-center truncate text-base font-normal tracking-normal sm:text-lg md:text-2xl"
           >
             Portafolio
           </a>
         </div>
 
-        <div className="absolute left-[58%] z-10 hidden -translate-x-1/2 items-center rounded-md bg-[var(--color-surface)] px-1.5 py-1 shadow-sm md:flex">
+        <div className="absolute left-[58%] z-10 hidden -translate-x-1/2 items-center px-1.5 py-1 md:flex">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="rounded-md px-5 py-2 text-xl font-semibold text-[var(--color-muted)] transition hover:bg-[var(--color-accent-soft)] hover:text-[var(--color-accent)]"
+              className="nav-water-link relative overflow-hidden rounded-md px-5 py-2 text-xl font-semibold text-[var(--color-muted)] transition-colors duration-200 hover:text-[var(--color-accent)]"
+              onPointerDown={(event) => showRipple(event, item.href)}
             >
-              {item.label}
+              {ripple?.href === item.href && (
+                <span
+                  key={ripple.id}
+                  className="nav-water-ripple"
+                  style={{ left: ripple.x, top: ripple.y }}
+                />
+              )}
+              <span className="relative z-10">{item.label}</span>
             </a>
           ))}
         </div>
@@ -112,10 +139,18 @@ export function Header({
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-md px-2 py-2 text-sm font-semibold text-[var(--color-muted)]"
+                className="nav-water-link relative overflow-hidden rounded-md px-2 py-2 text-sm font-semibold text-[var(--color-muted)] transition-colors duration-200 hover:text-[var(--color-accent)]"
+                onPointerDown={(event) => showRipple(event, item.href)}
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item.label}
+                {ripple?.href === item.href && (
+                  <span
+                    key={ripple.id}
+                    className="nav-water-ripple"
+                    style={{ left: ripple.x, top: ripple.y }}
+                  />
+                )}
+                <span className="relative z-10">{item.label}</span>
               </a>
             ))}
           </div>
